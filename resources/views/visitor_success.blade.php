@@ -23,35 +23,51 @@
                 <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">ID: {{ $settings['pass_prefix'] ?? 'MIL-EXPO-' }}{{ str_pad($visitor->id, 5, '0', STR_PAD_LEFT) }}</p>
             </div>
 
+            @php
+                $passFields = $settings['pass_fields'] ?? [];
+            @endphp
+
+            {{-- Visitor Name --}}
+            @if(($passFields['name']['enabled'] ?? true))
             <div class="receipt-row">
-                <span class="receipt-label">Visitor Name</span>
+                <span class="receipt-label">{{ $passFields['name']['label'] ?? 'Visitor Name' }}</span>
                 <span class="receipt-val">{{ $visitor->name }}</span>
             </div>
+            @endif
 
+            {{-- Mobile Number --}}
+            @if(($passFields['mobile_number']['enabled'] ?? true))
             <div class="receipt-row">
-                <span class="receipt-label">Mobile Number</span>
+                <span class="receipt-label">{{ $passFields['mobile_number']['label'] ?? 'Mobile Number' }}</span>
                 <span class="receipt-val">{{ $visitor->mobile_number }}</span>
             </div>
+            @endif
 
-            @if($visitor->whatsapp_number)
+            {{-- WhatsApp Number --}}
+            @if(($passFields['whatsapp_number']['enabled'] ?? true) && $visitor->whatsapp_number)
             <div class="receipt-row">
-                <span class="receipt-label">WhatsApp Number</span>
+                <span class="receipt-label">{{ $passFields['whatsapp_number']['label'] ?? 'WhatsApp Number' }}</span>
                 <span class="receipt-val">{{ $visitor->whatsapp_number }}</span>
             </div>
             @endif
 
+            {{-- State --}}
+            @if(($passFields['state']['enabled'] ?? true))
             <div class="receipt-row">
-                <span class="receipt-label">State</span>
+                <span class="receipt-label">{{ $passFields['state']['label'] ?? 'State' }}</span>
                 <span class="receipt-val">{{ $visitor->state }}</span>
             </div>
+            @endif
 
-            @if($visitor->district)
+            {{-- District --}}
+            @if(($passFields['district']['enabled'] ?? true) && $visitor->district)
             <div class="receipt-row">
-                <span class="receipt-label">District</span>
+                <span class="receipt-label">{{ $passFields['district']['label'] ?? 'District' }}</span>
                 <span class="receipt-val">{{ $visitor->district }}</span>
             </div>
             @endif
 
+            {{-- Other State Name --}}
             @if($visitor->other_state_name)
             <div class="receipt-row">
                 <span class="receipt-label">State Name (Other)</span>
@@ -59,39 +75,55 @@
             </div>
             @endif
 
+            {{-- Business Name --}}
+            @if(($passFields['business_name']['enabled'] ?? true))
             <div class="receipt-row">
-                <span class="receipt-label">Business Name</span>
+                <span class="receipt-label">{{ $passFields['business_name']['label'] ?? 'Business Name' }}</span>
                 <span class="receipt-val">{{ $visitor->business_name }}</span>
             </div>
+            @endif
 
+            {{-- Business Category --}}
+            @if(($passFields['business_category']['enabled'] ?? true))
             <div class="receipt-row">
-                <span class="receipt-label">Business Category</span>
+                <span class="receipt-label">{{ $passFields['business_category']['label'] ?? 'Business Category' }}</span>
                 <span class="receipt-val">{{ $visitor->business_category }}</span>
             </div>
+            @endif
 
+            {{-- Business Activity --}}
+            @if(($passFields['business_activity']['enabled'] ?? true))
             <div class="receipt-row">
-                <span class="receipt-label">Business Activity</span>
+                <span class="receipt-label">{{ $passFields['business_activity']['label'] ?? 'Business Activity' }}</span>
                 <span class="receipt-val">{{ $visitor->business_activity }}</span>
             </div>
+            @endif
 
+            {{-- Has Website --}}
+            @if(($passFields['has_website']['enabled'] ?? true))
             <div class="receipt-row">
-                <span class="receipt-label">Has Website</span>
+                <span class="receipt-label">{{ $passFields['has_website']['label'] ?? 'Has Website' }}</span>
                 <span class="receipt-val">{{ $visitor->has_website ? 'Yes' : 'No' }}</span>
             </div>
+            @endif
 
-            @if($visitor->has_website && $visitor->website_url)
+            {{-- Website URL --}}
+            @if(($passFields['website_url']['enabled'] ?? true) && $visitor->has_website && $visitor->website_url)
             <div class="receipt-row">
-                <span class="receipt-label">Website URL</span>
+                <span class="receipt-label">{{ $passFields['website_url']['label'] ?? 'Website URL' }}</span>
                 <span class="receipt-val" style="word-break: break-all; max-width: 200px;">{{ $visitor->website_url }}</span>
             </div>
             @endif
 
+            {{-- Interested in Webpage --}}
+            @if(($passFields['interested_in_webpage']['enabled'] ?? true))
             <div class="receipt-row">
-                <span class="receipt-label">Webpage Interest</span>
+                <span class="receipt-label">{{ $passFields['interested_in_webpage']['label'] ?? 'Webpage Interest' }}</span>
                 <span class="receipt-val">{{ $visitor->interested_in_webpage ? 'Yes' : 'No' }}</span>
             </div>
+            @endif
 
-            <!-- Custom dynamic fields on pass -->
+            {{-- Custom dynamic fields on pass --}}
             @if($visitor->custom_fields && is_array($visitor->custom_fields))
                 @foreach($visitor->custom_fields as $customKey => $customVal)
                     @if(!empty($customVal))
@@ -107,25 +139,46 @@
                 @endforeach
             @endif
 
+            {{-- Date & Time --}}
+            @if(($passFields['created_at']['enabled'] ?? true))
             <div class="receipt-row" style="border-top: 1px solid var(--border-color); margin-top: 0.5rem; padding-top: 0.8rem;">
-                <span class="receipt-label" style="font-weight: bold;">Date & Time</span>
+                <span class="receipt-label" style="font-weight: bold;">{{ $passFields['created_at']['label'] ?? 'Date & Time' }}</span>
                 <span class="receipt-val" style="font-weight: bold; color: var(--text-secondary);">{{ $visitor->created_at->format('d M Y, h:i A') }}</span>
             </div>
+            @endif
         </div>
 
+        @php
+            $successButtons = $settings['success_buttons'] ?? [];
+            $showRegisterAnother = $successButtons['register_another']['enabled'] ?? true;
+            $showPrint          = $successButtons['print']['enabled'] ?? true;
+            $showDownload       = $successButtons['download']['enabled'] ?? true;
+            $registerAnotherLabel = $successButtons['register_another']['label'] ?? 'Register Another';
+            $printLabel           = $successButtons['print']['label'] ?? 'Print';
+            $downloadLabel        = $successButtons['download']['label'] ?? 'Download';
+        @endphp
+
+        @if($showRegisterAnother || $showPrint || $showDownload)
         <div class="no-print" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
-            <a href="{{ route('visitor.index') }}" class="btn-submit" style="margin-top: 0; display: inline-block; width: auto; padding: 0.8rem 1.8rem; text-decoration: none; font-family: 'Poppins', sans-serif;">Register Another</a>
-            
+            @if($showRegisterAnother)
+            <a href="{{ route('visitor.index') }}" class="btn-submit" style="margin-top: 0; display: inline-block; width: auto; padding: 0.8rem 1.8rem; text-decoration: none; font-family: 'Poppins', sans-serif;">{{ $registerAnotherLabel }}</a>
+            @endif
+
+            @if($showPrint)
             <button onclick="window.print()" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.8rem; background-color: var(--primary-blue); color: white; border: none; cursor: pointer; font-size: 1rem; font-weight: 600; box-shadow: var(--shadow-sm); border-radius: var(--radius-sm); font-family: 'Poppins', sans-serif; transition: var(--transition);">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-                Print
+                {{ $printLabel }}
             </button>
+            @endif
 
+            @if($showDownload)
             <button id="btnDownload" onclick="downloadPass()" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 1.8rem; background-color: var(--primary-orange); color: white; border: none; cursor: pointer; font-size: 1rem; font-weight: 600; box-shadow: var(--shadow-sm); border-radius: var(--radius-sm); font-family: 'Poppins', sans-serif; transition: var(--transition);">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download
+                {{ $downloadLabel }}
             </button>
+            @endif
         </div>
+        @endif
 
         <style>
         @media print {
@@ -176,16 +229,14 @@ function downloadPass() {
     const element = document.querySelector('.receipt-box');
     
     html2canvas(element, {
-        scale: 3, // scale up by 3x for ultra-sharp high resolution print/image quality
+        scale: 3,
         useCORS: true,
         backgroundColor: '#ffffff',
         logging: false
     }).then(canvas => {
-        // Restore button state
         btn.disabled = false;
         btn.innerHTML = originalText;
 
-        // Trigger automatic file download
         const link = document.createElement('a');
         link.download = 'visitor_pass_{{ $settings['pass_prefix'] ?? 'MIL-EXPO-' }}{{ str_pad($visitor->id, 5, "0", STR_PAD_LEFT) }}.png';
         link.href = canvas.toDataURL('image/png');

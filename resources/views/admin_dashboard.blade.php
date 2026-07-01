@@ -71,11 +71,14 @@ footer {
 }
 
 .sidebar-logo {
-    height: 40px;
-    width: auto;
-    max-width: 100%;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
+
 
 .sidebar-nav {
     padding: 1.25rem 0.75rem;
@@ -250,95 +253,426 @@ footer {
     border: 1px solid #E02424 !important;
 }
 
-/* Dark Mode styles override */
+
+
+/* =====================================================
+   PROFESSIONAL DARK MODE — COMPLETE OVERRIDE
+   Palette: bg=#0F172A, card=#1E293B, surface=#243047, 
+            border=#2D3E5A, text=#E2E8F0, muted=#94A3B8
+   ===================================================== */
+
+/* === Layout === */
 body.dark-mode {
-    background-color: #1A202C !important;
-    color: #EDF2F7 !important;
+    background-color: #0F172A !important;
 }
+body.dark-mode .admin-layout {
+    background-color: #0F172A !important;
+}
+body.dark-mode .admin-main {
+    background-color: #0F172A !important;
+}
+
+/* === Admin Header === */
+body.dark-mode .admin-title {
+    color: #F1F5FF !important;
+}
+body.dark-mode .admin-header p,
+body.dark-mode .admin-header span:not(.badge) {
+    color: #94A3B8 !important;
+}
+
+/* === Sidebar === */
 body.dark-mode .admin-sidebar {
-    background-color: #111827 !important;
-    border-right-color: #2D3748 !important;
+    background-color: #0D1526 !important;
+    border-right-color: #1E2D45 !important;
 }
 body.dark-mode .sidebar-header {
-    background-color: #111827 !important;
-    border-bottom-color: #2D3748 !important;
+    background-color: #0D1526 !important;
+    border-bottom-color: #1E2D45 !important;
 }
 body.dark-mode .sidebar-logo {
     background-color: #ffffff !important;
-    padding: 6px !important;
-    border-radius: 8px !important;
+    padding: 8px 12px !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+    max-width: 165px !important;
 }
-body.dark-mode .admin-main {
-    background-color: #1A202C !important;
-}
-body.dark-mode .admin-header h1,
-body.dark-mode .top-navbar h1,
-body.dark-mode .chart-title,
-body.dark-mode .admin-table th,
-body.dark-mode #legend-tn,
-body.dark-mode #legend-other,
-body.dark-mode h3[id^="stat-"] {
-    color: #FFFFFF !important;
-}
-body.dark-mode .admin-header p,
-body.dark-mode .top-navbar span {
-    color: #A0AEC0 !important;
-}
-body.dark-mode .admin-table td,
-body.dark-mode .admin-table td div,
-body.dark-mode .admin-table td span:not(.badge),
-body.dark-mode .admin-table tr:hover td {
-    background-color: #2D3748 !important;
-    color: #EDF2F7 !important;
-    border-color: #4A5568 !important;
-}
-body.dark-mode .admin-table th {
-    border-bottom-color: #4A5568 !important;
+
+body.dark-mode .nav-section-title {
+    color: #4F6785 !important;
 }
 body.dark-mode .admin-sidebar .nav-item {
-    color: #A0AEC0 !important;
+    color: #7C8FAF !important;
+}
+body.dark-mode .admin-sidebar .nav-item:hover {
+    background-color: rgba(93, 135, 255, 0.07) !important;
+    color: #A5B4FC !important;
 }
 body.dark-mode .admin-sidebar .nav-item.active {
+    background-color: rgba(93, 135, 255, 0.15) !important;
+    color: #818CF8 !important;
+}
+
+/* === Top Navbar === */
+body.dark-mode .top-navbar {
+    border-bottom-color: #1E2D45 !important;
+}
+body.dark-mode .top-navbar-left h2 {
+    color: #F1F5FF !important;
+}
+body.dark-mode .top-search {
+    background-color: #1E293B !important;
+    border-color: #2D3E5A !important;
+    color: #E2E8F0 !important;
+}
+body.dark-mode .top-search::placeholder {
+    color: #4A5E78 !important;
+}
+body.dark-mode .top-search:focus {
+    background-color: #243047 !important;
+    border-color: #5D87FF !important;
+}
+body.dark-mode .top-search-wrapper svg {
+    color: #4A5E78 !important;
+}
+body.dark-mode .top-date-badge {
+    background-color: #1E293B !important;
+    border-color: #2D3E5A !important;
+    color: #E2E8F0 !important;
+}
+body.dark-mode #theme-toggle-btn {
+    background: #1E293B !important;
+    border-color: #2D3E5A !important;
+}
+body.dark-mode .avatar-badge {
+    background-color: #E2E8F0 !important;
+    color: #0F172A !important;
+}
+
+/* === All White Cards (chart cards, CMS setting cards) === */
+body.dark-mode [style*="background: white"],
+body.dark-mode [style*="background:white"],
+body.dark-mode [style*="background-color: white"],
+body.dark-mode [style*="background: #ffffff"],
+body.dark-mode [style*="background:#ffffff"],
+body.dark-mode [style*="background-color: #ffffff"],
+body.dark-mode [style*="background-color:#ffffff"],
+body.dark-mode [style*="background: #fff"],
+body.dark-mode [style*="background:#fff"],
+body.dark-mode [style*="background-color: #fff"],
+body.dark-mode [style*="background-color:#fff"] {
+    background-color: #1E293B !important;
+    border-color: #2D3E5A !important;
+    color: #E2E8F0 !important;
+}
+
+/* === Inset panels (F8FAFC dashed borders) === */
+body.dark-mode [style*="background: #F8FAFC"],
+body.dark-mode [style*="background:#F8FAFC"],
+body.dark-mode [style*="background-color: #F8FAFC"],
+body.dark-mode [style*="background: #f8fafc"],
+body.dark-mode [style*="background-color: #f8fafc"],
+body.dark-mode [style*="background: #FAFBFD"],
+body.dark-mode [style*="background-color: #FAFBFD"],
+body.dark-mode [style*="background: #fafbfd"],
+body.dark-mode [style*="background-color: #fafbfd"] {
+    background-color: #152032 !important;
+    border-color: #2A3E58 !important;
+}
+
+/* === Page background fallback === */
+body.dark-mode [style*="background-color: #f6f8fb"],
+body.dark-mode [style*="background: #f6f8fb"],
+body.dark-mode [style*="background-color: #F6F8FB"] {
+    background-color: #0F172A !important;
+}
+
+/* === Form inputs, textareas, selects === */
+body.dark-mode input:not([type="checkbox"]):not([type="radio"]):not([class*="flatpickr"]),
+body.dark-mode textarea,
+body.dark-mode select,
+body.dark-mode .form-control,
+body.dark-mode .premium-select {
+    background-color: #0F172A !important;
+    color: #E2E8F0 !important;
+    border-color: #2D3E5A !important;
+}
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #3D5070 !important;
+}
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus,
+body.dark-mode .form-control:focus {
+    background-color: #152032 !important;
+    border-color: #5D87FF !important;
+    box-shadow: 0 0 0 3px rgba(93,135,255,0.12) !important;
+    outline: none !important;
+}
+
+/* === Form Labels === */
+body.dark-mode label,
+body.dark-mode .form-label {
+    color: #94A3B8 !important;
+}
+body.dark-mode [style*="color: #2A3547"],
+body.dark-mode [style*="color:#2A3547"],
+body.dark-mode [style*="color: #1b365d"],
+body.dark-mode [style*="color:#1b365d"] {
+    color: #E2E8F0 !important;
+}
+body.dark-mode [style*="color: #5A6A85"],
+body.dark-mode [style*="color:#5A6A85"],
+body.dark-mode [style*="color: #7C8BA1"],
+body.dark-mode [style*="color:#7C8BA1"],
+body.dark-mode [style*="color: #5a6a85"],
+body.dark-mode [style*="color: #7c8ba1"] {
+    color: #64748B !important;
+}
+
+/* === Section headings inside CMS cards === */
+body.dark-mode .chart-title,
+body.dark-mode h2.chart-title {
+    color: #F1F5FF !important;
+}
+body.dark-mode [style*="color: #5D87FF"],
+body.dark-mode [style*="color:#5D87FF"] {
+    color: #818CF8 !important;
+}
+
+/* === Metric cards === */
+body.dark-mode .metric-card {
+    background-color: #1E293B !important;
+    border-color: #2D3E5A !important;
+}
+body.dark-mode .metric-card.active-total {
+    background-color: rgba(93,135,255,0.1) !important;
+    border-color: #5D87FF !important;
+}
+body.dark-mode .metric-card.active-tn {
+    background-color: rgba(255,174,31,0.1) !important;
+    border-color: #FFAE1F !important;
+}
+body.dark-mode .metric-card.active-other {
+    background-color: rgba(19,222,185,0.1) !important;
+    border-color: #13DEB9 !important;
+}
+body.dark-mode .metric-card.active-interested {
+    background-color: rgba(83,155,255,0.1) !important;
+    border-color: #539BFF !important;
+}
+
+/* Overrides for inline background-colors (badges, pills, table inline blocks) */
+body.dark-mode [style*="background-color: #ECF2FF"],
+body.dark-mode [style*="background-color:#ECF2FF"],
+body.dark-mode [style*="background: #ECF2FF"],
+body.dark-mode [style*="background:#ECF2FF"] {
+    background-color: rgba(93, 135, 255, 0.12) !important;
+    color: #818CF8 !important;
+    border-color: rgba(93, 135, 255, 0.2) !important;
+}
+
+body.dark-mode [style*="background-color: #FEF5E5"],
+body.dark-mode [style*="background-color:#FEF5E5"],
+body.dark-mode [style*="background: #FEF5E5"],
+body.dark-mode [style*="background:#FEF5E5"],
+body.dark-mode [style*="background-color: #FFF5E0"],
+body.dark-mode [style*="background-color:#FFF5E0"],
+body.dark-mode [style*="background: #FFF5E0"],
+body.dark-mode [style*="background:#FFF5E0"] {
+    background-color: rgba(255, 174, 31, 0.12) !important;
+    color: #FFAE1F !important;
+    border-color: rgba(255, 174, 31, 0.2) !important;
+}
+
+body.dark-mode [style*="background-color: #E6FFFA"],
+body.dark-mode [style*="background-color:#E6FFFA"],
+body.dark-mode [style*="background: #E6FFFA"],
+body.dark-mode [style*="background:#E6FFFA"],
+body.dark-mode [style*="background-color: #f2fcf9"],
+body.dark-mode [style*="background: #f2fcf9"] {
+    background-color: rgba(19, 222, 185, 0.12) !important;
+    color: #13DEB9 !important;
+    border-color: rgba(19, 222, 185, 0.2) !important;
+}
+
+body.dark-mode [style*="background-color: #EBF3FE"],
+body.dark-mode [style*="background-color:#EBF3FE"],
+body.dark-mode [style*="background: #EBF3FE"],
+body.dark-mode [style*="background:#EBF3FE"],
+body.dark-mode [style*="background-color: #e8f4ff"],
+body.dark-mode [style*="background: #e8f4ff"] {
+    background-color: rgba(83, 155, 255, 0.12) !important;
+    color: #539BFF !important;
+    border-color: rgba(83, 155, 255, 0.2) !important;
+}
+
+body.dark-mode [style*="background-color: #FDEDE8"],
+body.dark-mode [style*="background-color:#FDEDE8"],
+body.dark-mode [style*="background: #FDEDE8"],
+body.dark-mode [style*="background:#FDEDE8"] {
+    background-color: rgba(250, 137, 107, 0.12) !important;
+    color: #FA896B !important;
+    border-color: rgba(250, 137, 107, 0.2) !important;
+}
+
+/* Specific styling for the orange code tags like Success Page button keys */
+body.dark-mode code[style*="background: #FFF4E5"],
+body.dark-mode code[style*="background:#FFF4E5"],
+body.dark-mode [style*="background-color: #FFF4E5"],
+body.dark-mode [style*="background: #FFF4E5"] {
+    background-color: rgba(255, 174, 31, 0.12) !important;
+    color: #FFAE1F !important;
+    border: 1px solid rgba(255, 174, 31, 0.2) !important;
+}
+
+/* Inline codes generally inside card tables */
+body.dark-mode code {
+    background-color: #152032 !important;
+    color: #E2E8F0 !important;
+    border: 1px solid #2D3E5A !important;
+}
+
+/* Ensure no blocky solid highlights behind table cell texts, divs, and spans */
+body.dark-mode .admin-table td div:not(.badge),
+body.dark-mode .admin-table td span:not([style*="background"]):not(.badge) {
+    background-color: transparent !important;
+}
+
+
+/* === Table === */
+body.dark-mode .admin-table th {
+    color: #94A3B8 !important;
+    border-bottom-color: #1E2D45 !important;
+    background-color: transparent !important;
+}
+body.dark-mode .admin-table td {
+    background-color: #1E293B !important;
+    color: #CBD5E1 !important;
+    border-color: #1A2740 !important;
+}
+body.dark-mode .admin-table tr:nth-child(even) td {
+    background-color: #1A2740 !important;
+}
+body.dark-mode .admin-table tr:hover td {
+    background-color: rgba(93, 135, 255, 0.06) !important;
+}
+
+/* === Badges === */
+body.dark-mode .badge-yes {
+    background-color: rgba(19, 222, 185, 0.1) !important;
+    border-color: #13DEB9 !important;
+    color: #13DEB9 !important;
+}
+body.dark-mode .badge-no {
+    background-color: rgba(224, 36, 36, 0.1) !important;
+    border-color: #E02424 !important;
+    color: #FC8181 !important;
+}
+
+/* === Pagination === */
+body.dark-mode .pagination a,
+body.dark-mode .pagination span {
+    background-color: #1E293B !important;
+    border-color: #2D3E5A !important;
+    color: #94A3B8 !important;
+}
+body.dark-mode .pagination .active span,
+body.dark-mode .pagination [aria-current] span {
     background-color: #5D87FF !important;
     color: #FFFFFF !important;
 }
-body.dark-mode div[style*="background: white"],
-body.dark-mode div[style*="background-color: #ffffff"],
-body.dark-mode div[style*="background: #ffffff"] {
-    background-color: #2D3748 !important;
-    border-color: #4A5568 !important;
+
+/* === Section dividers === */
+body.dark-mode hr {
+    border-color: #1E2D45 !important;
 }
-body.dark-mode input:not([class^="flatpickr"]),
-body.dark-mode select:not([class^="flatpickr"]),
-body.dark-mode select:not([class*="flatpickr"]) {
-    background-color: #1A202C !important;
-    color: #FFFFFF !important;
-    border-color: #4A5568 !important;
+body.dark-mode [style*="border-bottom: 1px solid #e5eaf2"],
+body.dark-mode [style*="border-bottom: 1px solid #DFE5EF"],
+body.dark-mode [style*="border-top: 1px solid #e5eaf2"],
+body.dark-mode [style*="border-top: 1px solid #DFE5EF"] {
+    border-color: #1E2D45 !important;
 }
-body.dark-mode .top-date-badge {
-    background-color: #2D3748 !important;
-    border-color: #4A5568 !important;
-    color: #FFFFFF !important;
+
+/* === Action buttons in table === */
+body.dark-mode button[style*="background: #EBF3FE"],
+body.dark-mode button[style*="background-color: #EBF3FE"],
+body.dark-mode button[style*="background: #ECF2FF"],
+body.dark-mode button[style*="background-color: #ECF2FF"] {
+    background-color: rgba(93, 135, 255, 0.12) !important;
+    color: #818CF8 !important;
+    border-color: rgba(93, 135, 255, 0.2) !important;
 }
-body.dark-mode .top-date-badge span {
-    color: #FFFFFF !important;
+body.dark-mode button[style*="background: #FDEDE8"],
+body.dark-mode button[style*="background-color: #FDEDE8"] {
+    background-color: rgba(224, 36, 36, 0.1) !important;
+    color: #FC8181 !important;
 }
-body.dark-mode .top-search {
-    background-color: #2D3748 !important;
-    border-color: #4A5568 !important;
-    color: #FFFFFF !important;
+
+/* === Bottom sidebar card === */
+body.dark-mode [style*="background: linear-gradient(135deg, #ECF2FF"] {
+    background: linear-gradient(135deg, #182640 0%, #0D1B33 100%) !important;
+    border-color: #1E3A5A !important;
 }
-body.dark-mode .sidebar-card {
-    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
-    border-color: #334155 !important;
-    color: #EDF2F7 !important;
+
+/* === Main footer bar === */
+body.dark-mode .admin-main-footer {
+    border-top-color: #1E2D45 !important;
+    color: #4A5E78 !important;
+    background-color: #0F172A !important;
 }
-body.dark-mode .sidebar-card p {
-    color: #A0AEC0 !important;
+
+/* === Toast success === */
+body.dark-mode [style*="background-color: #DEF7EC"] {
+    background-color: rgba(19, 222, 185, 0.08) !important;
+    border-color: rgba(19, 222, 185, 0.2) !important;
+    color: #13DEB9 !important;
 }
-body.dark-mode .sidebar-card p[style*="color: #1b365d"] {
-    color: #FFFFFF !important;
+
+
+/* Delete/danger small buttons in table rows */
+body.dark-mode button[style*="color: #FA896B"],
+body.dark-mode a[style*="color: #FA896B"] {
+    color: #FC8181 !important;
 }
+
+/* === Premium Scrollbars for Dark Mode === */
+body.dark-mode *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+body.dark-mode *::-webkit-scrollbar-track {
+    background: #0F172A !important;
+}
+body.dark-mode *::-webkit-scrollbar-thumb {
+    background: #2D3E5A !important;
+    border-radius: 99px !important;
+}
+body.dark-mode *::-webkit-scrollbar-thumb:hover {
+    background: #3D5375 !important;
+}
+
+/* Sidebar scrollbar background matching */
+body.dark-mode .admin-sidebar ::-webkit-scrollbar-track {
+    background: #0D1526 !important;
+}
+body.dark-mode .admin-sidebar ::-webkit-scrollbar-thumb {
+    background: #1E2D45 !important;
+}
+body.dark-mode .admin-sidebar ::-webkit-scrollbar-thumb:hover {
+    background: #2D3E5A !important;
+}
+
+/* Firefox scrollbar for dark mode */
+body.dark-mode * {
+    scrollbar-width: thin;
+    scrollbar-color: #2D3E5A #0F172A;
+}
+body.dark-mode .admin-sidebar {
+    scrollbar-color: #1E2D45 #0D1526;
+}
+
 
 .premium-select {
     appearance: none;
@@ -484,6 +818,192 @@ body.dark-mode .premium-select {
         padding: 16px;
     }
 }
+
+/* Clickable Metric Cards styling */
+.metric-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    border: 1px solid #e5eaf2;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.metric-card.active-total {
+    border-color: #5D87FF !important;
+    background-color: #f5f8ff !important;
+    box-shadow: 0 8px 25px rgba(93, 135, 255, 0.08);
+}
+.metric-card.active-tn {
+    border-color: #FFAE1F !important;
+    background-color: #fffbf2 !important;
+    box-shadow: 0 8px 25px rgba(255, 174, 31, 0.08);
+}
+.metric-card.active-other {
+    border-color: #13DEB9 !important;
+    background-color: #f2fcf9 !important;
+    box-shadow: 0 8px 25px rgba(19, 222, 185, 0.08);
+}
+.metric-card.active-interested {
+    border-color: #539BFF !important;
+    background-color: #f4f9ff !important;
+    box-shadow: 0 8px 25px rgba(83, 155, 255, 0.08);
+}
+
+/* Dark mode overrides for cards */
+body.dark-mode .metric-card {
+    background-color: #2D3748 !important;
+    border-color: #4A5568 !important;
+}
+body.dark-mode .metric-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+body.dark-mode .metric-card.active-total {
+    background-color: rgba(93, 135, 255, 0.1) !important;
+}
+body.dark-mode .metric-card.active-tn {
+    background-color: rgba(255, 174, 31, 0.1) !important;
+}
+body.dark-mode .metric-card.active-other {
+    background-color: rgba(19, 222, 185, 0.1) !important;
+}
+body.dark-mode .metric-card.active-interested {
+    background-color: rgba(83, 155, 255, 0.1) !important;
+}
+
+/* Premium Top Navbar */
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #e5eaf2;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+}
+
+.top-navbar-left h2 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #2A3547;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.top-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+}
+
+.top-search-wrapper {
+    position: relative;
+    width: 220px;
+}
+
+.top-search-wrapper svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7C8BA1;
+    pointer-events: none;
+}
+
+.top-search {
+    width: 100%;
+    padding: 0.55rem 1rem 0.55rem 2.3rem !important;
+    font-size: 0.825rem !important;
+    font-weight: 500 !important;
+    border: 1px solid #DFE5EF !important;
+    border-radius: 50px !important;
+    background-color: #FAFBFD !important;
+    color: #2A3547 !important;
+    outline: none !important;
+    transition: all 0.2s ease !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.top-search:focus {
+    border-color: #5D87FF !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(93, 135, 255, 0.1) !important;
+}
+
+.top-date-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.55rem 1.1rem !important;
+    font-size: 0.825rem !important;
+    font-weight: 600 !important;
+    color: #2A3547 !important;
+    border: 1px solid #DFE5EF !important;
+    border-radius: 50px !important;
+    background-color: #ffffff !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.top-date-badge:hover {
+    border-color: #5D87FF !important;
+}
+
+.avatar-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: #0F172A;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Dark mode overrides for top navbar */
+body.dark-mode .top-navbar {
+    border-bottom-color: #2D3748 !important;
+}
+body.dark-mode .top-navbar-left h2 {
+    color: #FFFFFF !important;
+}
+body.dark-mode .top-search {
+    background-color: #2D3748 !important;
+    border-color: #4A5568 !important;
+    color: #FFFFFF !important;
+}
+body.dark-mode .top-search:focus {
+    background-color: #1A202C !important;
+}
+body.dark-mode .top-date-badge {
+    background-color: #2D3748 !important;
+    border-color: #4A5568 !important;
+    color: #FFFFFF !important;
+}
+body.dark-mode .avatar-badge {
+    background-color: #FFFFFF !important;
+    color: #1A202C !important;
+}
 </style>
 
 <div class="admin-layout">
@@ -526,24 +1046,56 @@ body.dark-mode .premium-select {
                 <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="16" width="18" height="5" rx="1"/><rect x="3" y="3" width="18" height="13" rx="2"/></svg>
                 Footer
             </a>
-        </nav>
 
-        <!-- Sidebar Footer Wrapper -->
-        <div class="sidebar-footer-wrapper" style="margin-top: auto; border-top: 1px solid #e5eaf2; background-color: #ffffff;">
-            <!-- Help Support Box mimicking given image -->
-            <div class="sidebar-card" style="background: linear-gradient(135deg, #ECF2FF 0%, #E8F4FF 100%); padding: 1.25rem; border-radius: 12px; margin: 1.25rem; text-align: center; border: 1px solid #D2E3FF; margin-bottom: 1.25rem;">
-                <p style="font-weight: 700; font-size: 0.85rem; color: #1b365d; margin-bottom: 0.25rem;">{{ $settings['crm_title'] ?? 'Expo Desk CRM' }}</p>
-                <p style="font-size: 0.75rem; color: #5a6a85; line-height: 1.4; margin-bottom: 0.8rem;">{{ $settings['crm_powered_by'] ?? 'Powered by My India Living Digital Platform' }}</p>
-                <a href="{{ $settings['crm_website'] ?? 'https://myindialiving.com' }}" target="_blank" class="btn-secondary" style="font-size: 0.75rem; padding: 0.5rem 1rem; border-radius: 6px; display: inline-block; text-decoration: none; width: auto; background-color: #5d87ff; color: white;">Visit Website</a>
-            </div>
-        </div>
+            <div class="nav-section-title">Links</div>
+            <a href="{{ url('/') }}" target="_blank" class="nav-item">
+                <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                Registration Form
+            </a>
+
+            <a href="{{ $settings['crm_website'] ?? 'https://myindialiving.com' }}" target="_blank" class="nav-item">
+                <svg class="nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                My India Living
+            </a>
+        </nav>
     </aside>
 
     <!-- Main Content Area -->
     <div class="admin-main">
         <div class="admin-container">
-            <input type="hidden" id="top-search-input" value="{{ request('search') }}">
-            <input type="hidden" id="top-date-picker-input" value="{{ request('date_filter') }}">
+            <!-- Top Navbar -->
+            <div class="top-navbar">
+                <div class="top-navbar-left">
+                    <h2>Good Morning, Admin!</h2>
+                </div>
+                <div class="top-navbar-right">
+                    <!-- Search wrapper -->
+                    <div class="top-search-wrapper">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input id="top-search-input" class="top-search" type="text" placeholder="Search visitors..." value="{{ request('search') }}">
+                    </div>
+
+                    <!-- Date Badge -->
+                    <div class="top-date-badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5D87FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        <span id="top-date-display">{{ request('date_filter') ? now()->parse(request('date_filter'))->format('D, M d') : now()->format('D, M d') }}</span>
+                    </div>
+                    <input type="hidden" id="top-date-picker-input" value="{{ request('date_filter') }}">
+
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle-btn" style="border: 1px solid #DFE5EF; background: #FAFBFD; border-radius: 50px; padding: 4px; display: flex; align-items: center; cursor: pointer; gap: 4px; width: 62px; height: 32px; justify-content: space-between; flex-shrink: 0;" title="Toggle Theme">
+                        <span id="theme-light-icon" style="width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        </span>
+                        <span id="theme-dark-icon" style="width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                        </span>
+                    </button>
+
+                    <!-- Avatar Badge -->
+                    <div class="avatar-badge">AD</div>
+                </div>
+            </div>
     
     <!-- Toast notification -->
     @if(session('success'))
@@ -578,7 +1130,7 @@ body.dark-mode .premium-select {
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
         <!-- Card 1: Total -->
-        <div style="background: white; border-radius: 16px; padding: 1.5rem 1.5rem 1rem 1.5rem; border: 1px solid #e5eaf2; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; justify-content: space-between; height: 160px;">
+        <div id="card-total" class="metric-card" onclick="selectMetric('total')">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
                 <div>
                     <p style="font-size: 0.8rem; color: #7C8BA1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Total Visitors</p>
@@ -598,7 +1150,7 @@ body.dark-mode .premium-select {
         </div>
 
         <!-- Card 2: Tamil Nadu -->
-        <div style="background: white; border-radius: 16px; padding: 1.5rem 1.5rem 1rem 1.5rem; border: 1px solid #e5eaf2; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; justify-content: space-between; height: 160px;">
+        <div id="card-tn" class="metric-card" onclick="selectMetric('tn')">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
                 <div>
                     <p style="font-size: 0.8rem; color: #7C8BA1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Tamil Nadu Visitors</p>
@@ -618,7 +1170,7 @@ body.dark-mode .premium-select {
         </div>
 
         <!-- Card 3: Other States -->
-        <div style="background: white; border-radius: 16px; padding: 1.5rem 1.5rem 1rem 1.5rem; border: 1px solid #e5eaf2; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; justify-content: space-between; height: 160px;">
+        <div id="card-other" class="metric-card" onclick="selectMetric('other')">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
                 <div>
                     <p style="font-size: 0.8rem; color: #7C8BA1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Other State Visitors</p>
@@ -638,7 +1190,7 @@ body.dark-mode .premium-select {
         </div>
 
         <!-- Card 4: Interested in Webpage -->
-        <div style="background: white; border-radius: 16px; padding: 1.5rem 1.5rem 1rem 1.5rem; border: 1px solid #e5eaf2; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; justify-content: space-between; height: 160px;">
+        <div id="card-interested" class="metric-card" onclick="selectMetric('interested')">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%;">
                 <div>
                     <p style="font-size: 0.8rem; color: #7C8BA1; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin: 0;">Webpage Interested</p>
@@ -1415,10 +1967,92 @@ window.switchTab = function(tabId) {
     localStorage.setItem('admin_active_tab', tabId);
 }
 
+window.activeMetric = 'total';
+
+window.selectMetric = function(metric) {
+    window.activeMetric = metric;
+    
+    // 1. Update active states on cards
+    const cardIds = ['total', 'tn', 'other', 'interested'];
+    cardIds.forEach(id => {
+        const card = document.getElementById('card-' + id);
+        if (card) {
+            card.classList.remove('active-total', 'active-tn', 'active-other', 'active-interested');
+            if (id === metric) {
+                card.classList.add('active-' + id);
+            }
+        }
+    });
+    
+    // 2. Fetch corresponding trend data from sparkline-data-holder
+    const sparkHolder = document.getElementById('sparkline-data-holder');
+    const trendsData = sparkHolder ? JSON.parse(sparkHolder.getAttribute('data-trends')) : null;
+    if (!trendsData) return;
+    
+    let newData = [];
+    let label = '';
+    let borderColor = '#5D87FF';
+    let bgColor = 'rgba(93, 135, 255, 0.05)';
+    
+    switch(metric) {
+        case 'total':
+            newData = trendsData.total;
+            label = 'Total Visitors';
+            borderColor = '#5D87FF';
+            bgColor = 'rgba(93, 135, 255, 0.05)';
+            break;
+        case 'tn':
+            newData = trendsData.tn;
+            label = 'Tamil Nadu Visitors';
+            borderColor = '#FFAE1F';
+            bgColor = 'rgba(255, 174, 31, 0.05)';
+            break;
+        case 'other':
+            newData = trendsData.other;
+            label = 'Other State Visitors';
+            borderColor = '#13DEB9';
+            bgColor = 'rgba(19, 222, 185, 0.05)';
+            break;
+        case 'interested':
+            newData = trendsData.interested;
+            label = 'Webpage Interested';
+            borderColor = '#539BFF';
+            bgColor = 'rgba(83, 155, 255, 0.05)';
+            break;
+    }
+    
+    // 3. Update main line chart
+    if (window.lineChart) {
+        window.lineChart.data.datasets[0].data = newData;
+        window.lineChart.data.datasets[0].label = label;
+        window.lineChart.data.datasets[0].borderColor = borderColor;
+        window.lineChart.data.datasets[0].backgroundColor = bgColor;
+        window.lineChart.data.datasets[0].pointBackgroundColor = borderColor;
+        window.lineChart.update();
+        
+        // Also update chart title element
+        const chartTitle = document.querySelector('#lineChart').closest('div').parentElement.querySelector('.chart-title');
+        if (chartTitle) {
+            let metricTitle = 'Total Registrations';
+            if (metric === 'tn') metricTitle = 'Tamil Nadu Registrations';
+            else if (metric === 'other') metricTitle = 'Other State Registrations';
+            else if (metric === 'interested') metricTitle = 'Webpage Interest';
+            chartTitle.textContent = metricTitle + ' Trend (Last 7 Days)';
+        }
+    }
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // Restore tab state from localStorage
     const savedTab = localStorage.getItem('admin_active_tab') || 'dashboard';
     window.switchTab(savedTab);
+
+    // Set initial active metric card highlight
+    const defaultCard = document.getElementById('card-total');
+    if (defaultCard) {
+        defaultCard.classList.add('active-total');
+    }
 
     // --- Theme Switcher Logic ---
     const themeBtn = document.getElementById('theme-toggle-btn');
@@ -1429,24 +2063,32 @@ document.addEventListener('DOMContentLoaded', function() {
         if (theme === 'dark') {
             document.body.classList.add('dark-mode');
             if (darkIcon && lightIcon) {
-                darkIcon.style.backgroundColor = '#ffffff';
-                darkIcon.style.color = '#FFAE1F';
-                darkIcon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                darkIcon.style.backgroundColor = '#FFAE1F';
+                darkIcon.style.color = '#1A202C';
+                darkIcon.style.boxShadow = '0 2px 6px rgba(255,174,31,0.4)';
                 
                 lightIcon.style.backgroundColor = 'transparent';
-                lightIcon.style.color = '#A0AEC0';
+                lightIcon.style.color = '#64748B';
                 lightIcon.style.boxShadow = 'none';
+            }
+            if (themeBtn) {
+                themeBtn.style.background = '#1E293B';
+                themeBtn.style.borderColor = '#3A4A6B';
             }
         } else {
             document.body.classList.remove('dark-mode');
             if (darkIcon && lightIcon) {
                 darkIcon.style.backgroundColor = 'transparent';
-                darkIcon.style.color = '#4A5568';
+                darkIcon.style.color = '#94A3B8';
                 darkIcon.style.boxShadow = 'none';
                 
-                lightIcon.style.backgroundColor = '#ffffff';
-                lightIcon.style.color = '#FFAE1F';
-                lightIcon.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                lightIcon.style.backgroundColor = '#5D87FF';
+                lightIcon.style.color = '#ffffff';
+                lightIcon.style.boxShadow = '0 2px 6px rgba(93,135,255,0.4)';
+            }
+            if (themeBtn) {
+                themeBtn.style.background = '#FAFBFD';
+                themeBtn.style.borderColor = '#DFE5EF';
             }
         }
         localStorage.setItem('admin_theme', theme);
@@ -1519,7 +2161,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     const newOther = parseInt(doc.getElementById('stat-other').innerText);
 
                     window.lineChart.data.labels = newChartData.map(item => item.label);
-                    window.lineChart.data.datasets[0].data = newChartData.map(item => item.value);
+                    const newSparkHolder = doc.getElementById('sparkline-data-holder');
+                    const newTrends = newSparkHolder ? JSON.parse(newSparkHolder.getAttribute('data-trends')) : null;
+                    if (newTrends && newTrends[window.activeMetric]) {
+                        window.lineChart.data.datasets[0].data = newTrends[window.activeMetric];
+                    } else {
+                        window.lineChart.data.datasets[0].data = newChartData.map(item => item.value);
+                    }
                     window.lineChart.update();
 
                     window.donutChart.data.datasets[0].data = [newTn, newOther];
@@ -1770,7 +2418,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Update Line Chart
                     window.lineChart.data.labels = newChartData.map(item => item.label);
-                    window.lineChart.data.datasets[0].data = newChartData.map(item => item.value);
+                    const newSparkHolder = doc.getElementById('sparkline-data-holder');
+                    const newTrends = newSparkHolder ? JSON.parse(newSparkHolder.getAttribute('data-trends')) : null;
+                    if (newTrends && newTrends[window.activeMetric]) {
+                        window.lineChart.data.datasets[0].data = newTrends[window.activeMetric];
+                    } else {
+                        window.lineChart.data.datasets[0].data = newChartData.map(item => item.value);
+                    }
                     window.lineChart.update('none'); // silent update
 
                     // Update Donut Chart
