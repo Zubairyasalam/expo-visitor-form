@@ -214,61 +214,131 @@ class VisitorController extends Controller
         $settings = $this->getSettings();
         
         // Dynamic update of keys sent in request
-        $inputs = $request->except('_token');
+        $inputs = $request->except(['_token', 'setting_section']);
+        $section = $request->input('setting_section');
         
-        // Ensure arrays are preserved even if empty
-        if (!isset($inputs['categories'])) {
-            $inputs['categories'] = [];
-        }
-        if (!isset($inputs['districts'])) {
-            $inputs['districts'] = [];
-        }
-        if (!isset($inputs['states'])) {
-            $inputs['states'] = [];
-        }
-        if (!isset($inputs['submit_button_options'])) {
-            $inputs['submit_button_options'] = [];
-        }
-        
-        if (isset($inputs['fields']) && is_array($inputs['fields'])) {
-            foreach ($inputs['fields'] as $key => $field) {
-                $inputs['fields'][$key]['required'] = isset($field['required']) && ($field['required'] == '1' || $field['required'] === true);
-                $inputs['fields'][$key]['enabled'] = isset($field['enabled']) && ($field['enabled'] == '1' || $field['enabled'] === true);
+        if ($section === 'dropdowns') {
+            if (!isset($inputs['categories'])) {
+                $inputs['categories'] = [];
             }
-        }
-
-        if (isset($inputs['pass_fields']) && is_array($inputs['pass_fields'])) {
-            foreach ($inputs['pass_fields'] as $key => $field) {
-                $inputs['pass_fields'][$key]['enabled'] = isset($field['enabled']) && ($field['enabled'] == '1' || $field['enabled'] === true);
+            if (!isset($inputs['districts'])) {
+                $inputs['districts'] = [];
             }
-        }
-
-        if (isset($inputs['success_buttons']) && is_array($inputs['success_buttons'])) {
-            foreach ($inputs['success_buttons'] as $key => $btn) {
-                $inputs['success_buttons'][$key]['enabled'] = isset($btn['enabled']) && ($btn['enabled'] == '1' || $btn['enabled'] === true);
+            if (!isset($inputs['states'])) {
+                $inputs['states'] = [];
             }
-        }
-
-        if (!isset($inputs['footer_links'])) {
-            $inputs['footer_links'] = [];
-        }
-
-        if (isset($inputs['footer_links']) && is_array($inputs['footer_links'])) {
-            foreach ($inputs['footer_links'] as $key => $link) {
-                $inputs['footer_links'][$key]['enabled'] = isset($link['enabled']) && ($link['enabled'] == '1' || $link['enabled'] === true);
+            if (!isset($inputs['submit_button_options'])) {
+                $inputs['submit_button_options'] = [];
             }
-        }
-
-        if (!isset($inputs['footer_text_lines'])) {
-            $inputs['footer_text_lines'] = [];
+        } elseif ($section === 'form') {
+            if (isset($inputs['fields']) && is_array($inputs['fields'])) {
+                foreach ($inputs['fields'] as $key => $field) {
+                    $inputs['fields'][$key]['required'] = isset($field['required']) && ($field['required'] == '1' || $field['required'] === true);
+                    $inputs['fields'][$key]['enabled'] = isset($field['enabled']) && ($field['enabled'] == '1' || $field['enabled'] === true);
+                }
+            }
+        } elseif ($section === 'success') {
+            if (isset($inputs['pass_fields']) && is_array($inputs['pass_fields'])) {
+                foreach ($inputs['pass_fields'] as $key => $field) {
+                    $inputs['pass_fields'][$key]['enabled'] = isset($field['enabled']) && ($field['enabled'] == '1' || $field['enabled'] === true);
+                }
+                
+                // Set disabled ones
+                $allPassFields = ['name', 'mobile_number', 'whatsapp_number', 'state', 'district', 'business_name', 'business_category', 'business_activity', 'has_website', 'website_url', 'interested_in_webpage', 'created_at'];
+                foreach ($allPassFields as $key) {
+                    if (!isset($inputs['pass_fields'][$key])) {
+                        $inputs['pass_fields'][$key] = [
+                            'label' => $settings['pass_fields'][$key]['label'] ?? ucwords(str_replace('_', ' ', $key)),
+                            'enabled' => false
+                        ];
+                    }
+                }
+            }
+            if (isset($inputs['success_buttons']) && is_array($inputs['success_buttons'])) {
+                foreach ($inputs['success_buttons'] as $key => $btn) {
+                    $inputs['success_buttons'][$key]['enabled'] = isset($btn['enabled']) && ($btn['enabled'] == '1' || $btn['enabled'] === true);
+                }
+                
+                // Set disabled ones
+                $allSuccessBtns = ['register_another', 'print', 'download'];
+                foreach ($allSuccessBtns as $key) {
+                    if (!isset($inputs['success_buttons'][$key])) {
+                        $inputs['success_buttons'][$key] = [
+                            'label' => $settings['success_buttons'][$key]['label'] ?? ucwords(str_replace('_', ' ', $key)),
+                            'enabled' => false
+                        ];
+                    }
+                }
+            }
+        } elseif ($section === 'footer') {
+            if (!isset($inputs['footer_links'])) {
+                $inputs['footer_links'] = [];
+            }
+            if (isset($inputs['footer_links']) && is_array($inputs['footer_links'])) {
+                foreach ($inputs['footer_links'] as $key => $link) {
+                    $inputs['footer_links'][$key]['enabled'] = isset($link['enabled']) && ($link['enabled'] == '1' || $link['enabled'] === true);
+                }
+            }
+            if (!isset($inputs['footer_text_lines'])) {
+                $inputs['footer_text_lines'] = [];
+            }
+        } else {
+            // Fallback for forms without setting_section
+            if ($request->hasAny(['categories', 'districts', 'states', 'submit_button_options'])) {
+                if (!isset($inputs['categories'])) $inputs['categories'] = [];
+                if (!isset($inputs['districts'])) $inputs['districts'] = [];
+                if (!isset($inputs['states'])) $inputs['states'] = [];
+                if (!isset($inputs['submit_button_options'])) $inputs['submit_button_options'] = [];
+            } else {
+                unset($inputs['categories']);
+                unset($inputs['districts']);
+                unset($inputs['states']);
+                unset($inputs['submit_button_options']);
+            }
+            
+            if ($request->has('fields')) {
+                if (isset($inputs['fields']) && is_array($inputs['fields'])) {
+                    foreach ($inputs['fields'] as $key => $field) {
+                        $inputs['fields'][$key]['required'] = isset($field['required']) && ($field['required'] == '1' || $field['required'] === true);
+                        $inputs['fields'][$key]['enabled'] = isset($field['enabled']) && ($field['enabled'] == '1' || $field['enabled'] === true);
+                    }
+                }
+            }
+            
+            if ($request->has('pass_fields') || $request->has('success_buttons')) {
+                if (isset($inputs['pass_fields']) && is_array($inputs['pass_fields'])) {
+                    foreach ($inputs['pass_fields'] as $key => $field) {
+                        $inputs['pass_fields'][$key]['enabled'] = isset($field['enabled']) && ($field['enabled'] == '1' || $field['enabled'] === true);
+                    }
+                }
+                if (isset($inputs['success_buttons']) && is_array($inputs['success_buttons'])) {
+                    foreach ($inputs['success_buttons'] as $key => $btn) {
+                        $inputs['success_buttons'][$key]['enabled'] = isset($btn['enabled']) && ($btn['enabled'] == '1' || $btn['enabled'] === true);
+                    }
+                }
+            }
+            
+            if ($request->has('footer_year') || $request->has('footer_copyright_text')) {
+                if (!isset($inputs['footer_links'])) {
+                    $inputs['footer_links'] = [];
+                }
+                if (isset($inputs['footer_links']) && is_array($inputs['footer_links'])) {
+                    foreach ($inputs['footer_links'] as $key => $link) {
+                        $inputs['footer_links'][$key]['enabled'] = isset($link['enabled']) && ($link['enabled'] == '1' || $link['enabled'] === true);
+                    }
+                }
+                if (!isset($inputs['footer_text_lines'])) {
+                    $inputs['footer_text_lines'] = [];
+                }
+            }
         }
         
         foreach ($inputs as $key => $value) {
             $settings[$key] = $value;
         }
-
+        
         $this->saveSettings($settings);
-
+        
         return redirect()->route('admin.dashboard')->with('success', 'CMS Settings updated successfully.');
     }
 
@@ -406,22 +476,22 @@ class VisitorController extends Controller
         }
         
         $settings = json_decode(file_get_contents($path), true);
-        if (!isset($settings['categories'])) {
+        if (empty($settings['categories'])) {
             $settings['categories'] = ['Real Estate', 'Engineer/Contractor', 'Maintenance Services', 'Health Care', 'Education', 'Tours and Hospitality', 'Professional Services', 'Products'];
         }
-        if (!isset($settings['districts'])) {
+        if (empty($settings['districts'])) {
             $settings['districts'] = ['Ariyalur', 'Chengalpattu', 'Chennai', 'Coimbatore', 'Cuddalore', 'Dharmapuri', 'Dindigul', 'Erode', 'Kallakurichi', 'Kancheepuram', 'Kanniyakumari', 'Karur', 'Krishnagiri', 'Madurai', 'Mayiladuthurai', 'Nagapattinam', 'Namakkal', 'Nilgiris', 'Perambalur', 'Pudukkottai', 'Ramanathapuram', 'Ranipet', 'Salem', 'Sivaganga', 'Tenkasi', 'Thanjavur', 'Theni', 'Thoothukudi', 'Tiruchirappalli', 'Tirunelveli', 'Tirupattur', 'Tiruppur', 'Tiruvallur', 'Tiruvannamalai', 'Tiruvarur', 'Vellore', 'Viluppuram', 'Virudhunagar'];
         }
         if (!isset($settings['fields'])) {
             $settings['fields'] = $defaultFields;
         }
-        if (!isset($settings['states'])) {
+        if (empty($settings['states'])) {
             $settings['states'] = ['Tamil Nadu', 'Other State'];
         }
         if (!isset($settings['submit_button_text'])) {
             $settings['submit_button_text'] = 'Submit Registration';
         }
-        if (!isset($settings['submit_button_options'])) {
+        if (empty($settings['submit_button_options'])) {
             $settings['submit_button_options'] = ['Submit Registration', 'Register Now', 'Register Form', 'Join Expo'];
         }
         if (!isset($settings['success_title'])) {

@@ -1382,6 +1382,7 @@ body.dark-mode .avatar-badge {
             
             <form action="{{ route('admin.settings.update') }}" method="POST">
                 @csrf
+                <input type="hidden" name="setting_section" value="header">
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 1.5rem;">
                     <!-- Column 1: Public Registration Header -->
@@ -1463,6 +1464,7 @@ body.dark-mode .avatar-badge {
 
             <form action="{{ route('admin.settings.update') }}" method="POST">
                 @csrf
+                <input type="hidden" name="setting_section" value="form">
                 <div class="table-responsive">
                     <table class="admin-table" style="min-width: 100%; border-spacing: 0 4px;">
                         <thead>
@@ -1527,6 +1529,7 @@ body.dark-mode .avatar-badge {
 
             <form action="{{ route('admin.settings.update') }}" method="POST">
                 @csrf
+                <input type="hidden" name="setting_section" value="dropdowns">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
                     <!-- States Manager -->
                     <div>
@@ -1633,6 +1636,7 @@ body.dark-mode .avatar-badge {
             
             <form action="{{ route('admin.settings.update') }}" method="POST">
                 @csrf
+                <input type="hidden" name="setting_section" value="success">
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 1.5rem;">
                     <!-- Column 1: Header Details -->
@@ -1771,6 +1775,7 @@ body.dark-mode .avatar-badge {
             
             <form action="{{ route('admin.settings.update') }}" method="POST">
                 @csrf
+                <input type="hidden" name="setting_section" value="footer">
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
                     <!-- Column 1: Copyright Information -->
